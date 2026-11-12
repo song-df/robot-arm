@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15 天具身智能机械臂实训课程</title>
+<style>
+  :root{
+    --paper:#fdfcfa;
+    --ink:#1b1a18;
+    --ink2:#3c3a36;
+    --muted:#6e6a63;
+    --line:#e3ded4;
+    --accent:#a63d1f;
+    --band:#f5f2ec;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:16px;line-height:1.92;-webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:748px;margin:0 auto;padding:0 32px 120px}
+
+  /* ---------- 头部 ---------- */
+  header{padding:76px 0 40px;border-bottom:1px solid var(--ink)}
+  h1{
+    font-family:"Songti SC","STSong",Georgia,serif;
+    font-size:34px;line-height:1.4;margin:0 0 20px;font-weight:700;letter-spacing:-.01em;
+  }
+  .sub{
+    font-size:14px;color:var(--muted);line-height:1.95;margin:0
+  }
+  .sub b{color:var(--ink2);font-weight:600}
+
+  /* ---------- 章节 ---------- */
+  section{padding:44px 0 0}
+  h2{
+    display:flex;align-items:baseline;gap:12px;
+    font-size:19px;font-weight:700;margin:0 0 20px;letter-spacing:.01em;
+  }
+  h2 .no{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:11.5px;color:var(--accent);font-weight:500;letter-spacing:.06em;
+    transform:translateY(-1px)
+  }
+  h3{
+    font-size:15.5px;font-weight:700;margin:26px 0 6px;line-height:1.6;letter-spacing:.01em;
+  }
+  h3 .day{
+    font-weight:500;color:var(--muted);font-size:13px;margin-left:8px;letter-spacing:.02em
+  }
+  p{margin:0 0 15px;color:var(--ink2)}
+  .lead{font-size:16.5px;color:var(--ink)}
+
+  /* ---------- 教具清单 ---------- */
+  .tools{margin:6px 0 20px}
+  .tool{margin:0 0 9px;padding-left:18px;position:relative;color:var(--ink2);font-size:15.5px;line-height:1.85}
+  .tool::before{
+    content:"";position:absolute;left:0;top:.72em;width:6px;height:1.5px;background:var(--accent)
+  }
+  .tool b{color:var(--ink);font-weight:600}
+
+  /* ---------- 表格 ---------- */
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px}
+  th{
+    text-align:left;font-size:11.5px;letter-spacing:.12em;color:var(--muted);
+    font-weight:600;padding:0 0 10px;border-bottom:1px solid var(--ink)
+  }
+  th:last-child{text-align:right}
+  td{
+    padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink2)
+  }
+  td:first-child{color:var(--ink)}
+  td:last-child{
+    text-align:right;font-variant-numeric:tabular-nums;
+    font-feature-settings:"tnum";white-space:nowrap
+  }
+
+  /* ---------- 技术栈 ---------- */
+  .stack{display:flex;flex-wrap:wrap;gap:7px;margin:4px 0 8px}
+  .stack span{
+    font-size:12.5px;padding:4px 11px;border:1px solid var(--line);
+    border-radius:3px;color:var(--ink2);background:#fff;line-height:1.7
+  }
+  .stack span.plat{border-color:#d8cfc2;background:var(--band);color:var(--ink)}
+
+  /* ---------- 材料清单 ---------- */
+  .mats{list-style:none;padding:0;margin:4px 0 16px}
+  .mats li{
+    position:relative;padding-left:18px;margin:0 0 8px;
+    font-size:15.5px;color:var(--ink2)
+  }
+  .mats li::before{
+    content:"";position:absolute;left:0;top:.72em;width:6px;height:1.5px;background:var(--accent)
+  }
+  .note{font-size:14px;color:var(--muted);margin:0}
+
+  /* ---------- 附录 ---------- */
+  .appendix{
+    margin-top:56px;background:var(--band);border:1px solid var(--line);
+    border-radius:6px;padding:32px 30px 26px
+  }
+  .appendix .tag{
+    font-size:11px;letter-spacing:.14em;color:var(--accent);
+    font-weight:700;margin-bottom:14px
+  }
+  .appendix h2{font-size:17px;margin:0 0 16px}
+  .appendix p{font-size:14.5px;line-height:1.85;margin:0 0 12px}
+  .appendix p:last-child{margin-bottom:0}
+
+  footer{
+    margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--muted);line-height:1.9
+  }
+
+  @media(max-width:600px){
+    .page{padding:0 20px 80px}
+    header{padding:48px 0 32px}
+    h1{font-size:26px}
+    section{padding:34px 0 0}
+    .appendix{padding:24px 20px 18px}
+    td{font-size:14px}
+    td:last-child{white-space:normal}
+  }
+  @media print{
+    body{background:#fff;font-size:11.5pt}
+    .page{max-width:none;padding:0}
+    h2{page-break-after:avoid}
+    h3{page-break-after:avoid}
+    .appendix{background:#f7f5f1;border-color:#ddd}
+    section{padding-top:26px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>15 天具身智能机械臂实训课程</h1>
+  <p class="sub">
+    <b>独立完成课程设计、教材编写、技术攻坚与教学交付</b><br>
+    累计 100 名零基础学员完成全部实训并通过验收答辩
+  </p>
+</header>
+
+<section>
+  <h2><span class="no">01</span>一句话说明</h2>
+  <p class="lead">
+    一套 15 天的完整实训，把零基础的人带到能独立开发一台会看、会抓、能听懂人话的机械臂。
+    含 23 份分日教材、76 个可运行参考程序（26,116 行 Python）、6 件自研教具。
+  </p>
+</section>
+
+<section>
+  <h2><span class="no">02</span>为什么做这套课程</h2>
+  <p>
+    教具身智能，最难的往往不是讲算法，是让学员的硬件先跑起来。这一段没有教材可抄，全是具体的坑：
+    舵机 ID 冲突、串口权限、零位偏移、坐标系数错、换个光照阈值就全废、模型给出越界角度把机械臂撞停。
+  </p>
+  <p>
+    学员在第一个坑上卡两天，基本就放弃了。这些坑光靠讲课也解决不了，得有人提前把路修出来。
+  </p>
+  <p>
+    所以 15 天里我要求每天结束时都有能看见的东西，不是“讲完了”，而是“它动了”。
+    另外把学员最容易卡住的六个位置做成了工具。工具都是有人真卡住之后才写的，不是我预先设计的。
+  </p>
+</section>
+
+<section>
+  <h2><span class="no">03</span>课程做了什么</h2>
+  <p>从清点螺丝开始，到用一句自然语言驱动机械臂完成多步抓取结束，分五个阶段。</p>
+
+  <h3>认知与装配<span class="day">阶段一 · Day 1–2</span></h3>
+  <p>
+    讲具身智能的感知、认知、行动三层结构，然后按结构件、执行件、传动、线束、感知五类清点，
+    完成 6 自由度整机装配和通电自检。这一天的隐藏难点在线束，走线位置决定了后面每次转动会不会扯断连接。
+  </p>
+
+  <h3>驱动与运动学<span class="day">阶段二 · Day 3–5</span></h3>
+  <p>
+    Feetech SCS 总线协议（READ / WRITE / SYNC_WRITE、内存表、校验和）、舵机参数配置工具、零位标定。
+    然后是 URDF 模型解读、运动学正解和解析法解耦逆解：θ₁ 单独求，θ₂–θ₄ 退化成平面三连杆，
+    θ₅–θ₆ 解腕部，最后处理多解和关节限位。全程不调现成的运动学库。
+  </p>
+
+  <h3>主从遥操作与多臂联机<span class="day">阶段三 · Day 6–8</span></h3>
+  <p>
+    angle_relay 四端口中继、Leader-Bridge 主从桥接（WebSocket 通道，7 步递进实现）、
+    物理臂 Producer/Consumer 双模式、counts 与弧度互转、动作录制回放。
+    做到一条臂示教、多条臂复现。
+  </p>
+
+  <h3>视觉与抓取闭环<span class="day">阶段四 · Day 9–12</span></h3>
+  <p>
+    OpenCV 和 HSV 色彩空间、像素定位、YOLO 训练部署（背景减除加 GrabCut 自动抠图标注，
+    30 张起训，YOLOv8n 50 epoch 约 100 秒）、眼在手标定、IBVS 逼近、旋转角对齐、虚拟夹持判定。
+  </p>
+
+  <h3>智能体与验收<span class="day">阶段五 · Day 13–15</span></h3>
+  <p>
+    大模型三种输出模式（自由文本、结构化 JSON、Function Calling）、MCP 工具设计三要素、
+    机械臂 MCP 服务实现、通信链路分级测试和限位保护，最后答辩。
+  </p>
+
+  <p>验收考两件事：多对多联机控制，多台机械臂之间传递物品。都要现场演示通过。</p>
+</section>
+
+<section>
+  <h2><span class="no">04</span>我负责什么</h2>
+  <p>这套东西没有第二个人参与。</p>
+  <p>
+    课程设计上，15 天的结构、阶段划分、每天的可验收产出、验收指标，都是我定的。
+    教材 23 份全部自己写，逐日成篇，可以直接投屏上课。参考程序 76 个，26,116 行 Python，
+    其中 1,148 行是运动学正解和逆解（arm_kinematics 266 行、ik_client 449 行、ik_producer 433 行）。
+  </p>
+  <p>自研教具有六件：</p>
+
+  <div class="tools">
+    <p class="tool"><b>舵机参数配置工具</b>：12 个舵机出厂 ID 全一样，得能批量改，也能单独试转。</p>
+    <p class="tool"><b>标定 GUI 和 CSV 记录回放</b>：同一姿态不同机器读值不一样，不标定，后面的运动学就全建在错的基线上。</p>
+    <p class="tool"><b>angle_relay 四端口中继</b>：原来读写写死在一个进程里，加一条臂就得改内核。拆开之后每一端都能单独替换。</p>
+    <p class="tool"><b>Leader-Bridge 主从桥接</b>：没有专用示教臂时，用它把人拖出来的动作传给执行臂。</p>
+    <p class="tool"><b>机械臂 MCP Server 加中继</b>：模型能说话但机械臂不动，或者串口被调试进程占住，都靠这个解决。</p>
+    <p class="tool"><b>YOLO 训练诊断脚本</b>：学员第一次训模型，八成问题在数据不在网络。这个脚本把“训不出来”定位成具体原因。</p>
+  </div>
+
+  <p>授课和验收也是我。全程主讲，100 人的日常答疑、进度把控、最后答辩评审。</p>
+</section>
+
+<section>
+  <h2><span class="no">05</span>可量化成果</h2>
+  <table>
+    <thead><tr><th>项目</th><th>数量</th></tr></thead>
+    <tbody>
+      <tr><td>完成实训并通过验收的学员</td><td>100 名</td></tr>
+      <tr><td>教学材料</td><td>23 份（22 份分日教材 + 1 份资源总览）</td></tr>
+      <tr><td>去重后可运行参考程序</td><td>76 个</td></tr>
+      <tr><td>Python 代码量</td><td>26,116 行</td></tr>
+      <tr><td>独立实现的运动学解算代码</td><td>1,148 行</td></tr>
+      <tr><td>自研教具与工具</td><td>6 件</td></tr>
+      <tr><td>验收硬指标</td><td>2 项（多对多联机、多臂传递）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="no">06</span>技术栈</h2>
+  <div class="stack">
+    <span>Python</span>
+    <span>Feetech SCS / STS 总线舵机</span>
+    <span>串口通信与协议解析</span>
+    <span>URDF</span>
+    <span>运动学正解 / 解析法逆解</span>
+    <span>OpenCV</span>
+    <span>HSV 色彩空间</span>
+    <span>YOLOv8</span>
+    <span>手眼标定与图像伺服</span>
+    <span>WebSocket</span>
+    <span>生产-消费架构</span>
+    <span>大模型 Function Calling</span>
+    <span>MCP（FastMCP）</span>
+    <span class="plat">6 自由度机械臂 · SO-ARM100 兼容平台</span>
+  </div>
+</section>
+
+<section>
+  <h2><span class="no">07</span>两点说明</h2>
+  <p>
+    机械臂本体是 SO-ARM100 兼容的开源结构，URDF 和 3D 网格取自开源社区，硬件结构的设计权我不主张。
+    课程自研的是运动学解算、通信中继和主从架构、视觉与标定流程、智能体接入，以及整套教学体系。
+  </p>
+  <p>
+    另外 100 人这个规模，与其说是成绩，不如说是课程能成型的原因。小班可以靠现场答疑把个体问题兜住，
+    100 人兜不住，任何一处含糊都会变成几十个人同时卡住。指标怎么测、报错怎么读、参数为什么取这个值，
+    都必须写进教材、做成工具。
+  </p>
+</section>
+
+<section>
+  <h2><span class="no">08</span>可提供的证明材料</h2>
+  <ul class="mats">
+    <li>23 份教学材料的完整目录与内容</li>
+    <li>76 个参考程序源码、URDF 模型和结构件网格</li>
+    <li>6 件自研工具的源码与使用说明</li>
+  </ul>
+  <p class="note">以上均可提供原始文件供核验。</p>
+</section>
+
+<div class="appendix">
+  <div class="tag">附录 · 精简版 · 约 350 字</div>
+  <h2>字数受限的栏目可直接用这一版</h2>
+  <p><b>15 天具身智能机械臂实训课程｜独立设计并交付，100 名学员完成</b></p>
+  <p>
+    面向零基础学员的 15 天完整实训，从机械臂散件组装做到 AI 智能体控制。
+    学员从清点螺丝开始，最后完成「一句话多步抓取」的项目并答辩通过。
+  </p>
+  <p>
+    课程覆盖舵机总线协议与参数配置、零位标定、URDF 解读与运动学正解 / 解析法逆解、
+    主从中继与多臂联机、OpenCV 与 YOLO 目标检测、手眼标定与图像伺服抓取、
+    大模型 Function Calling 与机械臂 MCP 服务。
+  </p>
+  <p>
+    我负责全部内容：课程设计、23 份分日教材、76 个参考程序（26,116 行 Python）、
+    6 件自研教具（舵机配置工具、标定 GUI、angle_relay 中继、Leader-Bridge 主从桥接、
+    机械臂 MCP Server、YOLO 训练诊断），以及全程授课与验收。
+  </p>
+  <p>100 名学员全部通过「多对多联机控制」和「多机械臂传递物品」两项现场验收。</p>
+</div>
+
+<footer>
+  15 天具身智能机械臂实训课程 · 课程设计、教材编写、技术攻坚与教学交付均由本人独立完成<br>
+  100 名学员完成全部实训并通过验收答辩 · 2026
+</footer>
+
+</div>
+</body>
+</html>
